@@ -1,0 +1,151 @@
+{
+  "apiVersion": "1.0",
+  "kind": "Plugin",
+  "metadata": {
+    "name": "skill-template",
+    "displayName": "Skill Template - Sistema Empaquetado",
+    "version": "1.0.0",
+    "author": "Tu Nombre",
+    "email": "daniloangaritagarcia@gmail.com",
+    "description": "Sistema completo para crear y compartir skills empaquetadas como plugins de Claude Code",
+    "longDescription": "Una plantilla profesional y lista para usar que permite crear skills empaquetadas y compartibles. Incluye estructura de carpetas estándar, documentación completa, scripts de ejemplo y templates de respuesta.",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/tu-usuario/skill-template.git",
+      "branch": "main"
+    },
+    "license": "MIT",
+    "tags": [
+      "plugin",
+      "skill",
+      "template",
+      "scaffolding",
+      "development"
+    ],
+    "keywords": [
+      "skill",
+      "plugin",
+      "template",
+      "empaquetado",
+      "distribución"
+    ],
+    "category": "Development Tools",
+    "icon": "🎯",
+    "minClaudeVersion": "1.0.0",
+    "maxClaudeVersion": "*"
+  },
+  "specification": {
+    "capabilities": {
+      "tools": [
+        "bash",
+        "node",
+        "python",
+        "powershell"
+      ],
+      "features": [
+        "script-execution",
+        "file-manipulation",
+        "documentation-generation",
+        "template-support"
+      ]
+    },
+    "permissions": {
+      "required": [
+        "bash:*"
+      ],
+      "optional": [
+        "python:*",
+        "node:*"
+      ]
+    },
+    "environment": {
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "nodeVersion": "14.0.0",
+      "pythonVersion": "3.8.0"
+    }
+  },
+  "commands": {
+    "help": {
+      "description": "Mostrar ayuda de la skill",
+      "example": "skill-template --help"
+    },
+    "init": {
+      "description": "Inicializar una nueva skill basada en esta plantilla",
+      "example": "skill-template --init mi-skill"
+    },
+    "validate": {
+      "description": "Validar estructura de skill",
+      "example": "skill-template --validate"
+    }
+  },
+  "scripts": {
+    "install": "npm install",
+    "test": "node scripts/ejemplo-script.js --test",
+    "validate": "node scripts/validate.js"
+  },
+  "files": {
+    "include": [
+      "scripts/**",
+      "asset/**",
+      "references/**",
+      "SKILL.MD",
+      "USAGE.md",
+      "README.md",
+      ".claude-plugin/marketplace.json"
+    ],
+    "exclude": [
+      "node_modules/**",
+      ".git/**",
+      ".env",
+      "*.log",
+      "dist/**"
+    ]
+  },
+  "distribution": {
+    "marketplaces": [
+      "claude-code-official",
+      "github"
+    ],
+    "installMethods": [
+      "cli",
+      "manual",
+      "url"
+    ],
+    "autoUpdate": true,
+    "checkUpdateInterval": 86400
+  },
+  "documentation": {
+    "readme": "README.md",
+    "usage": "USAGE.md",
+    "changelog": "CHANGELOG.md",
+    "examples": "scripts/",
+    "api": "references/REFERENCES.md"
+  },
+  "support": {
+    "email": "daniloangaritagarcia@gmail.com",
+    "website": "https://github.com/tu-usuario/skill-template",
+    "issues": "https://github.com/tu-usuario/skill-template/issues",
+    "discussions": "https://github.com/tu-usuario/skill-template/discussions"
+  },
+  "metrics": {
+    "downloads": 0,
+    "rating": 0,
+    "reviews": 0,
+    "popularity": 0,
+    "lastUpdated": "2026-05-14T00:00:00Z"
+  },
+  "dependencies": {
+    "skill-framework": "^1.0.0"
+  },
+  "devDependencies": {},
+  "settings": {
+    "verboseMode": false,
+    "debugMode": false,
+    "cacheResults": true,
+    "logLevel": "info"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "claude": {
+    "model": "haiku",
+    "theme": "auto",
+    "codeReview": {
+      "enabled": true,
+      "requiresApproval": false
+    }
+  },
+  "permissions": {
+    "allowlist": [],
+    "allowedTools": []
+  },
+  "git": {
+    "autoPull": false,
+    "autoCommit": false
+  }
+}
