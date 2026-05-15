@@ -2,39 +2,51 @@
   "apiVersion": "1.0",
   "kind": "Plugin",
   "metadata": {
+    "id": "skill-template",
     "name": "skill-template",
     "displayName": "Skill Template - Sistema Empaquetado",
     "version": "1.0.0",
-    "author": "Tu Nombre",
+    "author": "Danilo Angarita",
     "email": "daniloangaritagarcia@gmail.com",
     "description": "Sistema completo para crear y compartir skills empaquetadas como plugins de Claude Code",
     "longDescription": "Una plantilla profesional y lista para usar que permite crear skills empaquetadas y compartibles. Incluye estructura de carpetas estándar, documentación completa, scripts de ejemplo y templates de respuesta.",
+    "homepage": "https://github.com/tu-usuario/skill-template",
     "repository": {
       "type": "git",
       "url": "https://github.com/tu-usuario/skill-template.git",
       "branch": "main"
     },
+    "bugs": {
+      "url": "https://github.com/tu-usuario/skill-template/issues",
+      "email": "daniloangaritagarcia@gmail.com"
+    },
     "license": "MIT",
+    "category": "Development Tools",
+    "icon": "🎯",
     "tags": [
-      "plugin",
       "skill",
+      "plugin",
       "template",
       "scaffolding",
-      "development"
+      "development",
+      "utilities"
     ],
     "keywords": [
       "skill",
       "plugin",
       "template",
       "empaquetado",
-      "distribución"
+      "distribución",
+      "claude-code"
     ],
-    "category": "Development Tools",
-    "icon": "🎯",
     "minClaudeVersion": "1.0.0",
-    "maxClaudeVersion": "*"
+    "maxClaudeVersion": "*",
+    "releaseDate": "2026-05-14",
+    "lastUpdated": "2026-05-14T00:00:00Z"
   },
   "specification": {
+    "apiVersion": "1.0",
+    "type": "skill-plugin",
     "capabilities": {
       "tools": [
         "bash",
@@ -46,7 +58,8 @@
         "script-execution",
         "file-manipulation",
         "documentation-generation",
-        "template-support"
+        "template-support",
+        "interactive-prompts"
       ]
     },
     "permissions": {
@@ -55,7 +68,9 @@
       ],
       "optional": [
         "python:*",
-        "node:*"
+        "node:*",
+        "filesystem:*",
+        "network:*"
       ]
     },
     "environment": {
@@ -64,46 +79,102 @@
         "macos",
         "linux"
       ],
+      "shell": [
+        "bash",
+        "powershell"
+      ],
       "nodeVersion": "14.0.0",
       "pythonVersion": "3.8.0"
     }
   },
-  "commands": {
-    "help": {
-      "description": "Mostrar ayuda de la skill",
-      "example": "skill-template --help"
-    },
-    "init": {
-      "description": "Inicializar una nueva skill basada en esta plantilla",
-      "example": "skill-template --init mi-skill"
-    },
-    "validate": {
-      "description": "Validar estructura de skill",
-      "example": "skill-template --validate"
+  "entryPoints": {
+    "default": "./scripts/ejemplo-script.js",
+    "commands": {
+      "help": {
+        "description": "Mostrar ayuda de la skill",
+        "script": "./scripts/ejemplo-script.js",
+        "example": "skill-template --help"
+      },
+      "init": {
+        "description": "Inicializar una nueva skill basada en esta plantilla",
+        "script": "./scripts/ejemplo-script.js",
+        "example": "skill-template --init mi-skill"
+      },
+      "validate": {
+        "description": "Validar estructura de skill",
+        "script": "./scripts/validate.js",
+        "example": "skill-template --validate"
+      }
     }
+  },
+  "activationEvents": [
+    "onCommand:skill-template.help",
+    "onCommand:skill-template.init",
+    "onCommand:skill-template.validate",
+    "workspaceContains:SKILL.MD"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "id": "skill-template.help",
+        "title": "Skill Template: Mostrar Ayuda",
+        "category": "Skill Template"
+      },
+      {
+        "id": "skill-template.init",
+        "title": "Skill Template: Inicializar Nueva Skill",
+        "category": "Skill Template"
+      },
+      {
+        "id": "skill-template.validate",
+        "title": "Skill Template: Validar Estructura",
+        "category": "Skill Template"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "bash",
+        "path": "./scripts/snippets.json"
+      }
+    ]
   },
   "scripts": {
     "install": "npm install",
     "test": "node scripts/ejemplo-script.js --test",
-    "validate": "node scripts/validate.js"
+    "validate": "node scripts/validate.js",
+    "build": "npm run validate",
+    "prepare": "npm run validate"
   },
   "files": {
     "include": [
       "scripts/**",
       "asset/**",
       "references/**",
+      ".claude-plugin/**",
       "SKILL.MD",
       "USAGE.md",
       "README.md",
-      ".claude-plugin/marketplace.json"
+      "CHANGELOG.md"
     ],
     "exclude": [
       "node_modules/**",
       ".git/**",
       ".env",
+      ".env.local",
       "*.log",
-      "dist/**"
+      "dist/**",
+      "build/**",
+      "test/**",
+      ".DS_Store"
     ]
+  },
+  "documentation": {
+    "readme": "README.md",
+    "usage": "USAGE.md",
+    "changelog": "CHANGELOG.md",
+    "examples": "scripts/",
+    "api": "references/REFERENCES.md",
+    "gettingStarted": "docs/GETTING_STARTED.md"
   },
   "distribution": {
     "marketplaces": [
@@ -118,34 +189,57 @@
     "autoUpdate": true,
     "checkUpdateInterval": 86400
   },
-  "documentation": {
-    "readme": "README.md",
-    "usage": "USAGE.md",
-    "changelog": "CHANGELOG.md",
-    "examples": "scripts/",
-    "api": "references/REFERENCES.md"
-  },
   "support": {
     "email": "daniloangaritagarcia@gmail.com",
     "website": "https://github.com/tu-usuario/skill-template",
     "issues": "https://github.com/tu-usuario/skill-template/issues",
-    "discussions": "https://github.com/tu-usuario/skill-template/discussions"
+    "discussions": "https://github.com/tu-usuario/skill-template/discussions",
+    "documentation": "https://github.com/tu-usuario/skill-template/wiki"
+  },
+  "dependencies": {
+    "skill-framework": "^1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.0",
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "claude": ">=1.0.0",
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "settings": {
+    "verboseMode": false,
+    "debugMode": false,
+    "cacheResults": true,
+    "logLevel": "info",
+    "autoValidate": true,
+    "enableMetrics": true
   },
   "metrics": {
     "downloads": 0,
     "rating": 0,
     "reviews": 0,
     "popularity": 0,
-    "lastUpdated": "2026-05-14T00:00:00Z"
+    "lastUpdated": "2026-05-14T00:00:00Z",
+    "version": "1.0.0"
   },
-  "dependencies": {
-    "skill-framework": "^1.0.0"
+  "security": {
+    "certificateUrl": null,
+    "trustedPublisher": false,
+    "sandboxed": true,
+    "requiresApproval": false
   },
-  "devDependencies": {},
-  "settings": {
-    "verboseMode": false,
-    "debugMode": false,
-    "cacheResults": true,
-    "logLevel": "info"
+  "compatibility": {
+    "claudeCodeVersion": ">=1.0.0",
+    "operatingSystems": [
+      "Windows",
+      "macOS",
+      "Linux"
+    ],
+    "architectures": [
+      "x64",
+      "arm64"
+    ]
   }
 }
